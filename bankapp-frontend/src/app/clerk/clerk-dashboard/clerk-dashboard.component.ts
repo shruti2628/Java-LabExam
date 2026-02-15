@@ -9,7 +9,8 @@ import { Transaction } from '../../models/transaction.model';
   selector: 'app-clerk-dashboard',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './clerk-dashboard.component.html'
+  templateUrl: './clerk-dashboard.component.html',
+  styleUrls: ['./clerk-dashboard.component.css']
 })
 export class ClerkDashboardComponent {
 
@@ -27,15 +28,22 @@ export class ClerkDashboardComponent {
   deposit() {
     this.clerkService.deposit(this.accountNumber, this.amount)
       .subscribe(() => {
-        this.message = 'Deposit request submitted for approval';
+        this.message = 'Amount deposited succesfully';
       });
   }
 
   withdraw() {
+    if (this.amount <= 200000) {
     this.clerkService.withdraw(this.accountNumber, this.amount)
       .subscribe(() => {
-        this.message = 'Withdraw request submitted for approval';
+        this.message = 'Amount withdrawn successfully';
       });
+    } else {
+      this.clerkService.withdraw(this.accountNumber, this.amount)
+      .subscribe(() => {
+        this.message = 'Withdraw request sent for manager approval';
+      });
+    }
   }
 
   loadTransactions() {

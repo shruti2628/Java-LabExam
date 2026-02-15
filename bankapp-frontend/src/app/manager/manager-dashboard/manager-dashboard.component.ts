@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-manager-dashboard',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './manager-dashboard.component.html'
+  templateUrl: './manager-dashboard.component.html',
+  styleUrls: ['./manager-dashboard.component.css']
 })
 export class ManagerDashboardComponent implements OnInit {
 
